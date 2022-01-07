@@ -2,8 +2,12 @@ import React from "react";
 import './styles.scss';
 
 export default function Show(props) {
-  const interviewerName = props.interviewer.map(interviewerObj => interviewerObj.interviewer);
-  //console.log(interviewerName)
+  const interviewerName = props.interviewer.map(interviewerObj => {
+    return interviewerObj.name
+  });
+
+  // console.log("props", props)
+  // console.log(interviewerName)
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
