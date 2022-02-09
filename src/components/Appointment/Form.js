@@ -16,6 +16,7 @@ export default function Form(props) {
     reset();
     props.onCancel();
   }
+  console.log(props)
 
   return (
     <main className="appointment__card appointment__card--create">
