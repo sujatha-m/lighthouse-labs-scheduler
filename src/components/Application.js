@@ -44,7 +44,7 @@ function bookInterview(id, interview) {
       setState({...state, appointments})
       return res
     })
-  .catch(err => console.log(err))
+  // .catch(err => err);
 }
 
 function cancelInterview(id) {
@@ -64,7 +64,7 @@ function cancelInterview(id) {
     setState({...state, appointments})
     return res
   })
-  .catch(err => console.log(err))
+  // .catch(err => err)
 }
 
 const appointmentObjects = getAppointmentsForDay(state, state.day);
