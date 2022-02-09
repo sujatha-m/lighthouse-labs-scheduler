@@ -28,7 +28,7 @@ export default function Application(props) {
 }, [])
 
 function bookInterview(id, interview) {
-  console.log("State", state)
+  //console.log("State", state)
   const appointment = {
     ...state.appointments[id],
     interview: { ...interview }
@@ -38,12 +38,32 @@ function bookInterview(id, interview) {
     ...state.appointments,
     [id]: appointment
   };
-  console.log("appointments", appointments)
+  //console.log("appointments", appointments)
   return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview:interview})
   .then(res => {
       setState({...state, appointments})
       return res
     })
+  .catch(err => console.log(err))
+}
+
+function cancelInterview(id) {
+
+  const appointment = {
+    ...state.appointments[id],
+    interview: null
+  };
+
+  const appointments = {
+    ...state.appointments,
+    [id]: appointment
+  }
+
+  return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+  .then(res => {
+    setState({...state, appointments})
+    return res
+  })
   .catch(err => console.log(err))
 }
 
@@ -59,6 +79,7 @@ const appointment = appointmentObjects.map((appointmentObject) => {
     interview={interview}
     interviewers={interviewers}
     bookInterview={bookInterview}
+    cancelInterview={cancelInterview}
   />
     )
 });
@@ -74,7 +95,12 @@ const appointment = appointmentObjects.map((appointmentObject) => {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={state.days} day={state.day} setDay={setDay} bookInterview={bookInterview}/>
+          <DayList 
+          days={state.days} 
+          day={state.day} 
+          setDay={setDay} 
+          bookInterview={bookInterview}
+          cancelInterview={cancelInterview}/>
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -85,7 +111,7 @@ const appointment = appointmentObjects.map((appointmentObject) => {
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
         {appointment}
-        <Appointment key="last" time="5pm" bookInterview={bookInterview}/>
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} cancelInterview={cancelInterview}/>
       </section>
     </main>
   );
