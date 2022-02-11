@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 import {
   render,
   cleanup,
+  waitForElement,
+  getByText,
+  getByAltText,
+  getAllByTestId,
+  prettyDOM,
   wait,
   fireEvent,
   getByPlaceholderText,
@@ -22,13 +27,16 @@ describe("Application", () => {
   });
 
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const { getByText, getByAltText } = render(<Application />);
+    const { container } = render(<Application />);
+    await wait(() => getByText(container, "Archie Cohen"));
+    const appointment = getAllByTestId(container, "appointment")[0];
 
-    await wait(() => getByText("Archie Cohen"));
-    fireEvent.click(ReactDOM.findDOMNode(<Empty />)); //Can't find this node
-    fireEvent.change(getByPlaceholderText("Enter Student Name"), {
-      target: { value: "Lydia Miller Jones" },
+    fireEvent.click(getByAltText(appointment, "Add"));
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" },
     });
-    fireEvent.click();
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+    fireEvent.click(getByText(appointment, "Save"));
+    console.log(prettyDOM(appointment));
   });
 });
