@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.25.0",
     "classnames": "^2.2.6",
+    "cypress": "^9.4.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.8.1",
     "react": "^16.9.0",
@@ -18,7 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cypress": "cypress open -P ."
   },
   "browserslist": {
     "production": [
@@ -50,6 +52,19 @@
     "watchPathIgnorePatterns": [
       "<rootDir>/node_modules/",
       "<rootDir>/.git/"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
     ]
-  }
+  },
+  "description": "Interview Scheduler",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sujatha-m/lighthouse-labs-scheduler"
+  },
+  "author": "Sujatha Mallela",
+  "license": "ISC",
+  "homepage": "https://github.com/sujatha-m/lighthouse-labs-scheduler#readme"
 }
