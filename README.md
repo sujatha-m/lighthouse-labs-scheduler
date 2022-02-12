@@ -24,7 +24,6 @@ npm run storybook
 
 ## Project Description
 
-
 ## Setup	Interview Scheduler is a SPA (Single Page Application) for tracking interviews built with latest tools and techniques for optimized user experience.
 The App utilizes  React built-in and custom hooks and allows users to add, edit and delete appointments in real time.
 Data is persisted by the API server using a PostgreSQL database. The client application communicates with an API server over HTTP, using the JSON format.
@@ -59,6 +58,8 @@ __Back-End:__ Express, Node.js, PostgreSQL
 
 __Testing:__ Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
 
+## Project View
+![Desktop Version](./public/images/Screenshot.png)
 ## Dependencies
 - Axios
 - Normalize.css
